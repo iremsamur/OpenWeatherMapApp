@@ -1,13 +1,14 @@
 package com.akbankbootcamp.OpenWeatherMapApp.entity;
 
 import com.akbankbootcamp.OpenWeatherMapApp.enums.EnumStatus;
+import com.akbankbootcamp.OpenWeatherMapApp.general.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "WEATHER_FORECAST")
-public class WeatherForecast {
+public class WeatherForecast extends BaseEntity {
     @Id
     @GeneratedValue(generator = "WeatherForecast", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "WeatherForecast", sequenceName = "WeatherForecast_ID_SEQ")
