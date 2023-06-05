@@ -12,7 +12,6 @@ public class WeatherForecast {
     @GeneratedValue(generator = "WeatherForecast", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "WeatherForecast", sequenceName = "WeatherForecast_ID_SEQ")
     private Long id;
-
     @Column(name = "TIME_STAMP", length = 250,nullable = false)
     private String timeStamp;
     @Column(name = "TEMPERATURE", nullable = false)
@@ -30,6 +29,11 @@ public class WeatherForecast {
     @JoinColumn(name = "INDIVIDUAL_ID", nullable = false)
     @JsonIgnoreProperties(value = { "weatherForecasts" })
     private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "WEATHER_FORECAST_DETAIL_ID", nullable = false)
+    @JsonIgnoreProperties(value = { "weatherForecasts" })
+    private WeatherForecastDetail weatherForecastDetail;
     public Double getFeelsLike() {
         return feelsLike;
     }
@@ -88,4 +92,19 @@ public class WeatherForecast {
         this.status = status;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public WeatherForecastDetail getWeatherForecastDetail() {
+        return weatherForecastDetail;
+    }
+
+    public void setWeatherForecastDetail(WeatherForecastDetail weatherForecastDetail) {
+        this.weatherForecastDetail = weatherForecastDetail;
+    }
 }
