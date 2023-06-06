@@ -1,60 +1,40 @@
-package com.akbankbootcamp.OpenWeatherMapApp.entity;
+package com.akbankbootcamp.OpenWeatherMapApp.dto.response.weatherforecast.operationsDTOs;
 
-import com.akbankbootcamp.OpenWeatherMapApp.general.BaseEntity;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import javax.persistence.*;
-import java.util.List;
-
-@Entity
-@Table(name = "WEATHER_FORECAST_DETAIL")
-public class WeatherForecastDetail extends BaseEntity {
-    @Id
-    @GeneratedValue(generator = "WeatherForecastDetail", strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name = "WeatherForecastDetail", sequenceName = "WeatherForecastDetail_ID_SEQ")
+public class WeatherForecastDetailResponseDTO {
     private Long id;
-
-    @Column(name = "LON_COORD", nullable = false)
     private Double lonCoord;
-    @Column(name = "LAT_COORD", nullable = false)
-    private Double latCoord;
-    @Column(name = "MAIN", length = 250,nullable = false)
+
+    private String latCoord;
+
     private String main;
-    @Column(name = "BASE", length = 250,nullable = false)
+
     private String base;
-    @Column(name = "TEMP_MIN", nullable = false)
+
     private Double tempMin;
-    @Column(name = "TEMP_MAX", nullable = false)
+
     private Double tempMax;
-    @Column(name = "PRESSURE", nullable = false)
+
     private Integer pressure;
-    @Column(name = "HUMIDITY", nullable = false)
+
     private Integer humidity;
-    @Column(name = "VISIBILITY", nullable = false)
+
     private Integer visibility;
-    @Column(name = "WIND_SPEED", nullable = false)
+
     private Double windSpeed;
-    @Column(name = "WIND_DEG", nullable = false)
+
     private Integer windDeg;
 
-    @Column(name = "CLOUDS_ALL", nullable = false)
     private Integer cloudsAll;
-    @Column(name = "COUNTRY", nullable = false)
+
     private String country;
-    @Column(name = "SUN_RISE", nullable = false)
+
     private Integer sunrise;
-    @Column(name = "SUN_SET", nullable = false)
+
     private Integer sunset;
 
-    @Column(name = "TIME_ZONE", nullable = false)
     private Integer timezone;
 
-    @Column(name = "COD", nullable = false)
     private Integer cod;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
-    @JsonIgnore
-    private List<WeatherForecast> weatherForecasts;
 
     public Long getId() {
         return id;
@@ -72,11 +52,11 @@ public class WeatherForecastDetail extends BaseEntity {
         this.lonCoord = lonCoord;
     }
 
-    public Double getLatCoord() {
+    public String getLatCoord() {
         return latCoord;
     }
 
-    public void setLatCoord(Double latCoord) {
+    public void setLatCoord(String latCoord) {
         this.latCoord = latCoord;
     }
 
@@ -198,13 +178,5 @@ public class WeatherForecastDetail extends BaseEntity {
 
     public void setCod(Integer cod) {
         this.cod = cod;
-    }
-
-    public List<WeatherForecast> getWeatherForecasts() {
-        return weatherForecasts;
-    }
-
-    public void setWeatherForecasts(List<WeatherForecast> weatherForecasts) {
-        this.weatherForecasts = weatherForecasts;
     }
 }

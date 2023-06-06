@@ -1,7 +1,7 @@
 package com.akbankbootcamp.OpenWeatherMapApp.mapper;
 
 import com.akbankbootcamp.OpenWeatherMapApp.dto.request.weatherforecast.WeatherForecastDetailSaveRequestDTO;
-import com.akbankbootcamp.OpenWeatherMapApp.dto.request.weatherforecast.WeatherForecastSaveRequestDTO;
+import com.akbankbootcamp.OpenWeatherMapApp.dto.request.weatherforecast.operationDTOs.WeatherForecastSaveRequestDTO;
 import com.akbankbootcamp.OpenWeatherMapApp.dto.response.user.UserResponseDTO;
 import com.akbankbootcamp.OpenWeatherMapApp.dto.request.user.UserSaveRequestDTO;
 import com.akbankbootcamp.OpenWeatherMapApp.dto.response.weatherforecast.WeatherForecastDetailResponseDTO;
@@ -19,14 +19,9 @@ import java.util.List;
 public interface WeatherForecastMapper {
     WeatherForecastMapper INSTANCE = Mappers.getMapper(WeatherForecastMapper.class);
 
-    WeatherForecast convertToWeatherForecastMapper(WeatherForecastSaveRequestDTO weatherForecastSaveRequestDTO);
-    WeatherForecastDetail convertToWeatherForecastDetailMapper(WeatherForecastDetailSaveRequestDTO weatherForecastSaveRequestDTO);
+    WeatherForecast convertToWeatherForecast(WeatherForecastSaveRequestDTO weatherForecastSaveRequestDTO);
 
-    WeatherForecastResponseDTO convertToWeatherForecastResponseDTO(WeatherForecast weatherForecast);
+    com.akbankbootcamp.OpenWeatherMapApp.dto.response.weatherforecast.operationsDTOs.WeatherForecastDetailResponseDTO convertToWeatherRequestDTO(WeatherForecast weatherForecast);
 
-    List<WeatherForecastResponseDTO> convertToWeatherForecastList(List<WeatherForecast> weatherForecasts);
 
-    WeatherForecastDetailResponseDTO convertToWeatherForecastDetailResponseDTO(WeatherForecastDetail weatherForecastDetail);
-
-    List<WeatherForecastDetailResponseDTO> convertToWeatherForecastDetailList(List<WeatherForecastDetail> weatherForecasts);
 }

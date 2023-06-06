@@ -5,6 +5,7 @@ import com.akbankbootcamp.OpenWeatherMapApp.dao.WeatherForecastRepository;
 import com.akbankbootcamp.OpenWeatherMapApp.entity.User;
 import com.akbankbootcamp.OpenWeatherMapApp.entity.WeatherForecast;
 import com.akbankbootcamp.OpenWeatherMapApp.general.BaseEntityService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,6 +14,7 @@ public class WeatherForecastEntityService extends BaseEntityService<WeatherForec
 
     private WeatherForecastRepository repository;
 
+    @Autowired
     public WeatherForecastEntityService(WeatherForecastRepository repository) {
         super(repository);
         this.repository = repository;

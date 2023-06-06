@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,6 +38,8 @@ public class AuthController {
         }
         final UserDetails userDetails = userControllerContractImpl.loadUserByUsername(authRequest.getUsername());
         final String jwt = jwtUtil.generateToken(userDetails);
+        Authentication username = SecurityContextHolder.getContext().getAuthentication();
+        System.out.println("Authentication : "+username);
         logger.info("Token created : "+jwt);
 
         return jwt;

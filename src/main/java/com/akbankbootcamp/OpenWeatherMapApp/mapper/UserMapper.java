@@ -17,6 +17,7 @@ public interface UserMapper {
     User convertToUser(UserSaveRequestDTO userSaveRequestDTO);
 
     UserResponseDTO convertToUserDTO(User user);
+    User convertToUser(UserResponseDTO user);
 
     List<UserResponseDTO> convertToUserDTOList(List<User> userList);
 
