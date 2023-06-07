@@ -56,6 +56,10 @@ public class User extends BaseEntity implements UserDetails {
     @JsonIgnore
     private List<WeatherForecast> weatherForecasts;
 
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    @JsonIgnore
+    private List<UserSearch> userSearches;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_roles",
@@ -222,5 +226,4 @@ public class User extends BaseEntity implements UserDetails {
     public void setCredentialsNonExpired(boolean credentialsNonExpired) {
         this.credentialsNonExpired = credentialsNonExpired;
     }
-
 }

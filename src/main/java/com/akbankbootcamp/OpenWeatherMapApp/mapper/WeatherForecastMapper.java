@@ -24,4 +24,5 @@ public interface WeatherForecastMapper {
     com.akbankbootcamp.OpenWeatherMapApp.dto.response.weatherforecast.operationsDTOs.WeatherForecastDetailResponseDTO convertToWeatherRequestDTO(WeatherForecast weatherForecast);
 
 
+
 }

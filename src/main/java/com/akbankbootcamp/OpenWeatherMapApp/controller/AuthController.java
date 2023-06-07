@@ -3,9 +3,14 @@ package com.akbankbootcamp.OpenWeatherMapApp.controller;
 import com.akbankbootcamp.OpenWeatherMapApp.config.JwtUtil;
 import com.akbankbootcamp.OpenWeatherMapApp.controller.contract.impl.UserControllerContractImpl;
 import com.akbankbootcamp.OpenWeatherMapApp.dto.request.user.AuthRequest;
+import com.akbankbootcamp.OpenWeatherMapApp.dto.request.user.UserSaveRequestDTO;
+import com.akbankbootcamp.OpenWeatherMapApp.dto.response.user.UserResponseDTO;
+import com.akbankbootcamp.OpenWeatherMapApp.general.RestResponse;
+import com.akbankbootcamp.OpenWeatherMapApp.general.exception.BusinessException;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -29,19 +34,35 @@ public class AuthController {
         this.userControllerContractImpl = userControllerContractImpl;
     }
     @PostMapping("/login")
-    public String creteToken(@RequestBody AuthRequest authRequest) throws Exception {
+    public ResponseEntity<RestResponse<String>> login(@RequestBody AuthRequest authRequest) throws Exception {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
+            final UserDetails userDetails = userControllerContractImpl.loadUserByUsername(authRequest.getUsername());
+            final String jwt = jwtUtil.generateToken(userDetails);
+            Authentication username = SecurityContextHolder.getContext().getAuthentication();
+            System.out.println("Authentication : "+username);
+            logger.info("Token created : "+jwt);
+            return ResponseEntity.ok(RestResponse.success(jwt,"Kullanıcı girişi başarılı!"));
         } catch (BadCredentialsException ex) {
             //throw new Exception("Incorret username or password", ex);
             logger.error("An error is occured. (Incorret username or password)"+ex.getMessage());
+            return ResponseEntity.ok(RestResponse.emptyError("An error is occured. (Incorret username or password)"+ex.getMessage()));
         }
-        final UserDetails userDetails = userControllerContractImpl.loadUserByUsername(authRequest.getUsername());
-        final String jwt = jwtUtil.generateToken(userDetails);
-        Authentication username = SecurityContextHolder.getContext().getAuthentication();
-        System.out.println("Authentication : "+username);
-        logger.info("Token created : "+jwt);
 
-        return jwt;
     }
+
+    @PostMapping("/register")
+    public ResponseEntity<RestResponse<UserResponseDTO>>  register(@RequestBody UserSaveRequestDTO userSaveRequestDTO) throws Exception {
+        try {
+            var userDTO = userControllerContractImpl.add(userSaveRequestDTO);
+            logger.info(userDTO.getName()+" "+userDTO.getPassword()+" user added successfully");
+            return ResponseEntity.ok(RestResponse.success(userDTO,"Kullanıcı başarıyla eklendi."));
+        } catch (BusinessException ex) {
+            logger.error("An error occured."+ex.getMessage());
+            return ResponseEntity.ok(RestResponse.emptyError(ex.getMessage()));
+        }
+
+    }
+
+
 }

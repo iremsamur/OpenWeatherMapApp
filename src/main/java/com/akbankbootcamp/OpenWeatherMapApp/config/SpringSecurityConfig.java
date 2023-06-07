@@ -46,6 +46,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
             "/v2/api-docs",
             "/webjars/**",
             "/api/v1/auth/login",
+            "/api/v1/auth/register",
             "/api/v1/users",
             "/api/v1/weatherforecasts/daily-forecasts/**",
             "/api/v1/weatherforecastsfeign/weather-forecast",

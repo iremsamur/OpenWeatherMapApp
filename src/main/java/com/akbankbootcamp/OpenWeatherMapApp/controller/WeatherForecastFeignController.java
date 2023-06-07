@@ -1,7 +1,6 @@
 package com.akbankbootcamp.OpenWeatherMapApp.controller;
 
-import com.akbankbootcamp.OpenWeatherMapApp.controller.contract.impl.WeatherForecastFeignControllerContractImpl;
-import com.akbankbootcamp.OpenWeatherMapApp.dto.response.weatherforecast.WeatherForecastDetailDTO;
+import com.akbankbootcamp.OpenWeatherMapApp.controller.contract.impl.WeatherForecastFeignControllerControllerContractImpl;
 import com.akbankbootcamp.OpenWeatherMapApp.dto.response.weatherforecast.WeatherForecastDetailListResponseDTO;
 import com.akbankbootcamp.OpenWeatherMapApp.dto.response.weatherforecast.WeatherForecastListResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +13,10 @@ import java.util.List;
 @RequestMapping("/api/v1/weatherforecastsfeign")
 @CrossOrigin("*")
 public class WeatherForecastFeignController {
-    private final WeatherForecastFeignControllerContractImpl weatherForecastFeignContract;
+    private final WeatherForecastFeignControllerControllerContractImpl weatherForecastFeignContract;
 
     @Autowired
-    public WeatherForecastFeignController(WeatherForecastFeignControllerContractImpl weatherForecastFeignContract) {
+    public WeatherForecastFeignController(WeatherForecastFeignControllerControllerContractImpl weatherForecastFeignContract) {
         this.weatherForecastFeignContract = weatherForecastFeignContract;
     }
 

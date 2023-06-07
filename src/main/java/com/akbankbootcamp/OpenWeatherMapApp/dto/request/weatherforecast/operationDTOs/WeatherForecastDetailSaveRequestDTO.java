@@ -1,6 +1,11 @@
 package com.akbankbootcamp.OpenWeatherMapApp.dto.request.weatherforecast.operationDTOs;
 
+import com.akbankbootcamp.OpenWeatherMapApp.dto.response.weatherforecast.WeatherForecastDetailListResponseDTO;
+
+import java.util.List;
+
 public class WeatherForecastDetailSaveRequestDTO {
+
     private Double lonCoord;
 
     private Double latCoord;

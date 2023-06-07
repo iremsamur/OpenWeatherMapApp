@@ -1,20 +1,25 @@
 package com.akbankbootcamp.OpenWeatherMapApp.dto.request.weatherforecast.operationDTOs;
 
+import com.akbankbootcamp.OpenWeatherMapApp.dto.response.weatherforecast.WeatherForecastDetailListResponseDTO;
+import com.akbankbootcamp.OpenWeatherMapApp.entity.User;
+import com.akbankbootcamp.OpenWeatherMapApp.entity.WeatherForecastDetail;
 import com.akbankbootcamp.OpenWeatherMapApp.enums.EnumStatus;
 
 import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import java.util.List;
 
 public class WeatherForecastSaveRequestDTO {
+
     private String timeStamp;
     private Double temperature;
     private String weatherDescription;
     private EnumStatus status;
     private String cityName;
     private Double feelsLike;
-    private Long weatherForecastDetailId;
-    private Long userId;
+    private WeatherForecastDetail weatherForecastDetail;
+    private User user;
 
     public String getTimeStamp() {
         return timeStamp;
@@ -64,19 +69,19 @@ public class WeatherForecastSaveRequestDTO {
         this.feelsLike = feelsLike;
     }
 
-    public Long getWeatherForecastDetailId() {
-        return weatherForecastDetailId;
+    public WeatherForecastDetail getWeatherForecastDetail() {
+        return weatherForecastDetail;
     }
 
-    public void setWeatherForecastDetailId(Long weatherForecastDetailId) {
-        this.weatherForecastDetailId = weatherForecastDetailId;
+    public void setWeatherForecastDetail(WeatherForecastDetail weatherForecastDetail) {
+        this.weatherForecastDetail = weatherForecastDetail;
     }
 
-    public Long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

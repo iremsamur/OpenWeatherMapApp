@@ -1,22 +1,20 @@
 package com.akbankbootcamp.OpenWeatherMapApp.controller.contract.impl;
 
-import com.akbankbootcamp.OpenWeatherMapApp.controller.contract.WeatherForecastDetailContract;
+import com.akbankbootcamp.OpenWeatherMapApp.controller.contract.WeatherForecastDetailControllerContract;
 import com.akbankbootcamp.OpenWeatherMapApp.dto.request.weatherforecast.operationDTOs.WeatherForecastDetailSaveRequestDTO;
-import com.akbankbootcamp.OpenWeatherMapApp.dto.response.weatherforecast.WeatherForecastDetailResponseDTO;
+import com.akbankbootcamp.OpenWeatherMapApp.dto.response.weatherforecast.operationsDTOs.WeatherForecastDetailResponseDTO;
 import com.akbankbootcamp.OpenWeatherMapApp.entity.WeatherForecastDetail;
 import com.akbankbootcamp.OpenWeatherMapApp.entityservice.WeatherForecastDetailEntityService;
 import com.akbankbootcamp.OpenWeatherMapApp.mapper.WeatherForecastDetailMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
-public class WeatherForecastDetailContractImpl implements WeatherForecastDetailContract {
+public class WeatherForecastDetailControllerContractImpl implements WeatherForecastDetailControllerContract {
     private final WeatherForecastDetailEntityService weatherForecastDetailEntityService;
 
     @Autowired
-    public WeatherForecastDetailContractImpl(WeatherForecastDetailEntityService weatherForecastDetailEntityService) {
+    public WeatherForecastDetailControllerContractImpl(WeatherForecastDetailEntityService weatherForecastDetailEntityService) {
         this.weatherForecastDetailEntityService = weatherForecastDetailEntityService;
     }
 
@@ -34,26 +32,10 @@ public class WeatherForecastDetailContractImpl implements WeatherForecastDetailC
 
     }
 
-    /*
-    @Override
-    public WeatherForecastDetailResponseDTO update(WeatherForecastDetailSaveRequestDTO weatherForecastSaveRequestDTO, Long weatherForecastDetailId) {
-        return null;
-    }
-
-    @Override
-    public List<WeatherForecastDetailResponseDTO> findAll() {
-        return null;
-    }
-
     @Override
     public WeatherForecastDetailResponseDTO getById(Long id) {
-        return null;
+        WeatherForecastDetail weatherForecastDetail = weatherForecastDetailEntityService.findById(id).orElse(null);
+        return WeatherForecastDetailMapper.INSTANCE.convertToWeatherForecastDetailRequestDTO(weatherForecastDetail);
     }
 
-    @Override
-    public void delete(Long id) {
-
-    }
-
-     */
 }
