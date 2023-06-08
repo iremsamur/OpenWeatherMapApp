@@ -40,7 +40,6 @@ public class UserControllerContractImplTest {
         when(userController.getByEmail(request.getEmail())).thenReturn(null);
         when(userController.getByPhoneNumber(request.getPhoneNumber())).thenReturn(null);
 
-        // Hizmeti çağır
         UserResponseDTO response = userController.add(request);
 
         // Sonuçları doğrula
@@ -73,13 +72,11 @@ public class UserControllerContractImplTest {
         existingUser.setId(userId);
         existingUser.setName("OldName");
 
-        // Kullanıcıya erişilebilir olduğunu simulasyonu ayarla
         when(userEntityService.findById(userId)).thenReturn(java.util.Optional.of(existingUser));
 
-        // Hizmeti çağır
+
         UserResponseDTO response = userController.update(request, userId);
 
-        // Sonuçları doğrula
         assertEquals(userId, response.getId());
         assertEquals(request.getName(), response.getName());
     }
