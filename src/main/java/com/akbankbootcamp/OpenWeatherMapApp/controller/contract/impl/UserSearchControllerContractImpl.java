@@ -11,6 +11,7 @@ import com.akbankbootcamp.OpenWeatherMapApp.entityservice.UserSearchEntityServic
 import com.akbankbootcamp.OpenWeatherMapApp.general.exception.BusinessException;
 import com.akbankbootcamp.OpenWeatherMapApp.mapper.UserMapper;
 import com.akbankbootcamp.OpenWeatherMapApp.mapper.UserSearchMapper;
+import com.akbankbootcamp.OpenWeatherMapApp.utils.WeatherTimeConvertionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -51,6 +52,7 @@ public class UserSearchControllerContractImpl implements UserSearchControllerCon
                     userSearchSaveRequestDTO.setDescription(weather.getDescription());
                 }
 
+                userSearchSaveRequestDTO.setDateTime(WeatherTimeConvertionUtil.convertUnixTimestampToDateTime(weatherResponse.getDt()));
                 userSearchSaveRequestDTO.setCityName(city);
                 userSearchSaveRequestDTO.setTemp(weatherResponse.getMain().getTemp());
                 userSearchSaveRequestDTO.setFeelsLike(weatherResponse.getMain().getFeels_like());

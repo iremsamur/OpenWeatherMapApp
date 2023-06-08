@@ -9,6 +9,7 @@ public class UserSearchResponseDTO {
     private String description;
     private Double temp;
     private Double feelsLike;
+    private String dateTime;
 
     public Long getId() {
         return id;
@@ -56,5 +57,13 @@ public class UserSearchResponseDTO {
 
     public void setFeelsLike(Double feelsLike) {
         this.feelsLike = feelsLike;
+    }
+
+    public String getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(String dateTime) {
+        this.dateTime = dateTime;
     }
 }

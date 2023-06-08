@@ -27,7 +27,8 @@ public class UserSearch extends BaseEntity {
     @Column(name = "FEELS_LIKE",nullable = false)
     private Double feelsLike;
 
-
+    @Column(name = "DATE_TIME", length = 250)
+    private String dateTime;
 
     @ManyToOne
     @JoinColumn(name = "INDIVIDUAL_ID", nullable = false)
@@ -88,5 +89,13 @@ public class UserSearch extends BaseEntity {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(String dateTime) {
+        this.dateTime = dateTime;
     }
 }

@@ -8,6 +8,7 @@ public class UserSearchSaveRequestDTO {
     private String description;
     private Double temp;
     private Double feelsLike;
+    private String dateTime;
     private User user;
 
     public String getCityName() {
@@ -56,5 +57,13 @@ public class UserSearchSaveRequestDTO {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(String dateTime) {
+        this.dateTime = dateTime;
     }
 }
