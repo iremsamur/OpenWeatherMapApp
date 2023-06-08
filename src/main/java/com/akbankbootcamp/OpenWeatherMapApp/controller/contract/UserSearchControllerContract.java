@@ -12,7 +12,6 @@ public interface UserSearchControllerContract {
     UserSearchResponseDTO add(String city);
 
     List<UserSearchResponseDTO> findAll();
-    UserSearchResponseDTO getById(Long id);
 
     void delete(Long id);
 

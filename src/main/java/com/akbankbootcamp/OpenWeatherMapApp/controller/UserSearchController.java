@@ -66,5 +66,15 @@ public class UserSearchController {
         }
 
     }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<RestResponse<Object>> delete(@PathVariable Long id) {
+        try {
+            userSearchControllerContract.delete(id);
+            return ResponseEntity.ok(RestResponse.emptySuccess("Arama kaydı başarıyla silindi"));
+        } catch (BusinessException ex) {
+            return ResponseEntity.ok(RestResponse.emptyError(ex.getMessage()));
+        }
+
+    }
 
 }

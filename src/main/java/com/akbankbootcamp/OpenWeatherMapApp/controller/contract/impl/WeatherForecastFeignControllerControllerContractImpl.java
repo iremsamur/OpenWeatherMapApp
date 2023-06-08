@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -49,7 +50,12 @@ public class WeatherForecastFeignControllerControllerContractImpl implements Wea
         List<WeatherForecastListResponseDTO> weatherForecastList= response.getList().stream()
                 .map(data -> new WeatherForecastListResponseDTO(data.getDt(), data.getMain().getTemp()))
                 .collect(Collectors.toList());
-        return weatherForecastList;
+        if(weatherForecastList !=null){
+            return weatherForecastList;
+
+        }
+        return new ArrayList<WeatherForecastListResponseDTO>();
+
     }
 
     @Override

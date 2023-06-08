@@ -86,12 +86,9 @@ public class UserSearchControllerContractImpl implements UserSearchControllerCon
     }
 
     @Override
-    public UserSearchResponseDTO getById(Long id) {
-        return null;
-    }
-
-    @Override
     public void delete(Long id) {
+
+        userSearchEntityService.delete(id);
 
     }
 
