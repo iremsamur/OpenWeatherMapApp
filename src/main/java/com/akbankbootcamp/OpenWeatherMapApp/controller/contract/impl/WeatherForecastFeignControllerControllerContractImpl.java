@@ -107,4 +107,13 @@ public class WeatherForecastFeignControllerControllerContractImpl implements Wea
         }
         return new WeatherForecastDetailListResponseDTO();
     }
+
+    @Override
+    public WeatherForecastDetailListResponseDTO getWeatherForecastDetailListByCity(String city) {
+        WeatherForecastDetailListResponseDTO weatherResponse = weatherClient.getWeatherForecastDetail(city, apiKey);
+        if(weatherResponse !=null ){
+            return weatherResponse;
+        }
+        return new WeatherForecastDetailListResponseDTO();
+    }
 }

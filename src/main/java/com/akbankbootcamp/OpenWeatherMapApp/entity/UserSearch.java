@@ -82,4 +82,11 @@ public class UserSearch extends BaseEntity {
         this.feelsLike = feelsLike;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

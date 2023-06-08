@@ -21,7 +21,6 @@ public class WeatherForecastControllerContractImpl implements WeatherForecastCon
     public com.akbankbootcamp.OpenWeatherMapApp.dto.response.weatherforecast.operationsDTOs.WeatherForecastDetailResponseDTO add(WeatherForecastSaveRequestDTO request) {
         if(request!=null ){
             WeatherForecast weatherForecast = WeatherForecastMapper.INSTANCE.convertToWeatherForecast(request);
-
             weatherForecast= weatherForecastEntityService.save(weatherForecast);
             return WeatherForecastMapper.INSTANCE.convertToWeatherRequestDTO(weatherForecast);
         }

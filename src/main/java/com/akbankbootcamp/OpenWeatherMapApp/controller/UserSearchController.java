@@ -13,8 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/api/v1/userSearches")
+@RequestMapping("/api/v1/searches")
 @CrossOrigin("*")
 public class UserSearchController {
     private final UserSearchControllerContract userSearchControllerContract;
@@ -24,8 +26,9 @@ public class UserSearchController {
     public UserSearchController(UserSearchControllerContract userSearchControllerContract) {
         this.userSearchControllerContract = userSearchControllerContract;
     }
+
     @ExceptionHandler
-    @PostMapping
+    @GetMapping("/add-search/{city}")
     public ResponseEntity<RestResponse<UserSearchResponseDTO>> add(@PathVariable String city) {
         try {
             var userSearchDTO = userSearchControllerContract.add(city);
@@ -37,4 +40,31 @@ public class UserSearchController {
         }
 
     }
+    @ExceptionHandler
+    @GetMapping("/get-all-search-results")
+    public ResponseEntity<RestResponse<List<UserSearchResponseDTO>>> getAllUserSearchResult() {
+        try {
+            var userSearchResponseDTOList = userSearchControllerContract.findAll();
+            logger.warn("Search DTO List Size : "+userSearchResponseDTOList.size());
+            return ResponseEntity.ok(RestResponse.success(userSearchResponseDTOList,"Arama sonuçları başarıyla yüklendi."));
+        } catch (BusinessException ex) {
+            logger.error("An error occured."+ex.getMessage());
+            return ResponseEntity.ok(RestResponse.emptyError(ex.getMessage()));
+        }
+
+    }
+    @ExceptionHandler
+    @GetMapping("/get-search-results-by-city/{cityName}")
+    public ResponseEntity<RestResponse<UserSearchResponseDTO>> getAllUserSearchResultByCity(@PathVariable String cityName) {
+        try {
+            var userSearchResponseDTO = userSearchControllerContract.findByCityName(cityName);
+            logger.warn("Search DTO List Temp : "+userSearchResponseDTO.getTemp());
+            return ResponseEntity.ok(RestResponse.success(userSearchResponseDTO,"Arama sonuçları başarıyla yüklendi."));
+        } catch (BusinessException ex) {
+            logger.error("An error occured."+ex.getMessage());
+            return ResponseEntity.ok(RestResponse.emptyError(ex.getMessage()));
+        }
+
+    }
+
 }

@@ -8,4 +8,6 @@ public interface WeatherForecastFeignControllerContract {
     List<WeatherForecastListResponseDTO> getWeatherForecastList(String city);
     WeatherForecastDetailListResponseDTO getWeatherForecastDetailList(String city);
 
+    WeatherForecastDetailListResponseDTO getWeatherForecastDetailListByCity(String city);
+
 }
